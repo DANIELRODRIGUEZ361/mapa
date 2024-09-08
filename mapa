@@ -26,18 +26,18 @@ class Usuario {
     }
 }
 
-public class dicionary {
+public class usuarios {
     private static Map<String, Usuario> usuarios = new HashMap<>();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         while (true) {
-            System.out.println("Menu:");
+            System.out.println("Menú:");
             System.out.println("1. Agregar Usuario");
             System.out.println("2. Buscar Usuario");
             System.out.println("3. Eliminar Usuario");
             System.out.println("4. Salir");
-            System.out.print("Seleccione una opcion: ");
+            System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();
 
@@ -52,11 +52,11 @@ public class dicionary {
                     eliminarUsuario();
                     break;
                 case 4:
-                    System.out.println("Saliste del programa");
+                    System.out.println("Saliendo del programa...");
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Opcion no valida.");
+                    System.out.println("Opción no válida.");
             }
         }
     }
@@ -64,23 +64,29 @@ public class dicionary {
     private static void agregarUsuario() {
         System.out.println("Agregar Usuario");
         System.out.print("Nombre Completo: ");
-        String nombreCompleto = scanner.nextLine();
+        String nombreCompleto = scanner.nextLine().trim();
         System.out.print("Nickname: ");
-        String nickname = scanner.nextLine();
+        String nickname = scanner.nextLine().trim();
         System.out.print("Clave: ");
-        String clave = scanner.nextLine();
+        String clave = scanner.nextLine().trim();
         System.out.print("Tipo: ");
-        String tipo = scanner.nextLine();
+        String tipo = scanner.nextLine().trim();
         System.out.print("Fecha de Creación: ");
-        String fechaCreacion = scanner.nextLine();
+        String fechaCreacion = scanner.nextLine().trim();
 
-        usuarios.put(nickname, new Usuario(nombreCompleto, nickname, clave, tipo, fechaCreacion));
+        if (nombreCompleto.isEmpty() || nickname.isEmpty() || clave.isEmpty() || tipo.isEmpty() || fechaCreacion.isEmpty()) {
+            System.out.println("Todos los campos son obligatorios.");
+            return;
+        }
+
+        Usuario nuevoUsuario = new Usuario(nombreCompleto, nickname, clave, tipo, fechaCreacion);
+        usuarios.put(nickname, nuevoUsuario);
         System.out.println("Usuario agregado.\n");
     }
 
     private static void buscarUsuario() {
         System.out.print("Ingrese el nickname a buscar: ");
-        String nickname = scanner.nextLine();
+        String nickname = scanner.nextLine().trim();
         Usuario usuario = usuarios.get(nickname);
         if (usuario != null) {
             System.out.println("Datos del Usuario:");
@@ -93,8 +99,9 @@ public class dicionary {
 
     private static void eliminarUsuario() {
         System.out.print("Ingrese el nickname a eliminar: ");
-        String nickname = scanner.nextLine();
-        if (usuarios.remove(nickname) != null) {
+        String nickname = scanner.nextLine().trim();
+        Usuario usuarioEliminado = usuarios.remove(nickname);
+        if (usuarioEliminado != null) {
             System.out.println("Usuario eliminado.");
         } else {
             System.out.println("Usuario no encontrado.");
