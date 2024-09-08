@@ -32,12 +32,12 @@ public class usuarios {
 
     public static void main(String[] args) {
         while (true) {
-            System.out.println("Menú:");
+            System.out.println("Menu:");
             System.out.println("1. Agregar Usuario");
             System.out.println("2. Buscar Usuario");
             System.out.println("3. Eliminar Usuario");
-            System.out.println("4. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opcion: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();
 
@@ -51,27 +51,27 @@ public class usuarios {
                 case 3:
                     eliminarUsuario();
                     break;
-                case 4:
-                    System.out.println("Saliendo del programa...");
+                case 0:
+                    System.out.println("Salistes del programa...");
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opcion no valida.");
             }
         }
     }
 
     private static void agregarUsuario() {
-        System.out.println("Agregar Usuario");
+        System.out.println("\n ( Agregar Usuario ) \n");
         System.out.print("Nombre Completo: ");
         String nombreCompleto = scanner.nextLine().trim();
         System.out.print("Nickname: ");
         String nickname = scanner.nextLine().trim();
         System.out.print("Clave: ");
         String clave = scanner.nextLine().trim();
-        System.out.print("Tipo: ");
+        System.out.print("genero: ");
         String tipo = scanner.nextLine().trim();
-        System.out.print("Fecha de Creación: ");
+        System.out.print("Fecha de Creacion ");
         String fechaCreacion = scanner.nextLine().trim();
 
         if (nombreCompleto.isEmpty() || nickname.isEmpty() || clave.isEmpty() || tipo.isEmpty() || fechaCreacion.isEmpty()) {
@@ -81,7 +81,7 @@ public class usuarios {
 
         Usuario nuevoUsuario = new Usuario(nombreCompleto, nickname, clave, tipo, fechaCreacion);
         usuarios.put(nickname, nuevoUsuario);
-        System.out.println("Usuario agregado.\n");
+        System.out.println(" \n( Usuario agregado.) \n ");
     }
 
     private static void buscarUsuario() {
@@ -89,10 +89,10 @@ public class usuarios {
         String nickname = scanner.nextLine().trim();
         Usuario usuario = usuarios.get(nickname);
         if (usuario != null) {
-            System.out.println("Datos del Usuario:");
+            System.out.println("\n   ( Datos del Usuario ): \n");
             System.out.println(usuario);
         } else {
-            System.out.println("Usuario no encontrado.");
+            System.out.println("\n ( Usuario no encontrado ).");
         }
         System.out.println();
     }
@@ -102,9 +102,9 @@ public class usuarios {
         String nickname = scanner.nextLine().trim();
         Usuario usuarioEliminado = usuarios.remove(nickname);
         if (usuarioEliminado != null) {
-            System.out.println("Usuario eliminado.");
+            System.out.println("\n ( Usuario eliminado ).");
         } else {
-            System.out.println("Usuario no encontrado.");
+            System.out.println("\n ( Usuario no encontrado. )");
         }
         System.out.println();
     }
