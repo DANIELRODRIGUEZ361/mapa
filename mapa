@@ -26,9 +26,9 @@ class Usuario {
     }
 }
 
-public class usuarios {
+public class usuario {
     private static Map<String, Usuario> usuarios = new HashMap<>();
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner entrada = new Scanner(System.in);
 
     public static void main(String[] args) {
         while (true) {
@@ -38,8 +38,8 @@ public class usuarios {
             System.out.println("3. Eliminar Usuario");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
-            int opcion = scanner.nextInt();
-            scanner.nextLine();
+            int opcion = entrada.nextInt();
+            entrada.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -53,7 +53,7 @@ public class usuarios {
                     break;
                 case 0:
                     System.out.println("Salistes del programa...");
-                    scanner.close();
+                    entrada.close();
                     return;
                 default:
                     System.out.println("Opcion no valida.");
@@ -64,15 +64,15 @@ public class usuarios {
     private static void agregarUsuario() {
         System.out.println("\n ( Agregar Usuario ) \n");
         System.out.print("Nombre Completo: ");
-        String nombreCompleto = scanner.nextLine().trim();
+        String nombreCompleto = entrada.nextLine().trim();
         System.out.print("Nickname: ");
-        String nickname = scanner.nextLine().trim();
+        String nickname = entrada.nextLine().trim();
         System.out.print("Clave: ");
-        String clave = scanner.nextLine().trim();
-        System.out.print("genero: ");
-        String tipo = scanner.nextLine().trim();
+        String clave = entrada.nextLine().trim();
+        System.out.print("tipo: ");
+        String tipo = entrada.nextLine().trim();
         System.out.print("Fecha de Creacion ");
-        String fechaCreacion = scanner.nextLine().trim();
+        String fechaCreacion = entrada.nextLine().trim();
 
         if (nombreCompleto.isEmpty() || nickname.isEmpty() || clave.isEmpty() || tipo.isEmpty() || fechaCreacion.isEmpty()) {
             System.out.println("Todos los campos son obligatorios.");
@@ -86,7 +86,7 @@ public class usuarios {
 
     private static void buscarUsuario() {
         System.out.print("Ingrese el nickname a buscar: ");
-        String nickname = scanner.nextLine().trim();
+        String nickname = entrada.nextLine().trim();
         Usuario usuario = usuarios.get(nickname);
         if (usuario != null) {
             System.out.println("\n   ( Datos del Usuario ): \n");
@@ -99,7 +99,7 @@ public class usuarios {
 
     private static void eliminarUsuario() {
         System.out.print("Ingrese el nickname a eliminar: ");
-        String nickname = scanner.nextLine().trim();
+        String nickname = entrada.nextLine().trim();
         Usuario usuarioEliminado = usuarios.remove(nickname);
         if (usuarioEliminado != null) {
             System.out.println("\n ( Usuario eliminado ).");
